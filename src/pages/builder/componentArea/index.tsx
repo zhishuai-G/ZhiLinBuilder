@@ -2,6 +2,7 @@ import React from 'react';
 import { Tabs } from 'antd';
 import type { TabsProps } from 'antd';
 import * as components from './components'
+import { componentIconMap, componentTextMap } from './staticUtil/iconList'
 import './style'
 
 const onChange = (key: string) => {
@@ -10,12 +11,17 @@ const onChange = (key: string) => {
 
 const renderComponent = () => {
   return (
-    <div>
+    <div className='componetGroup'>
       {
         Object.keys(components).map((name: string, index: number) => {
+          const Icon = componentIconMap[name]
+          const Text = componentTextMap[name]
           return (
             <div key={index} draggable='true' className='componentItem'>
-              <div style={{ display: 'inline-block' }}><span>{name}</span></div>
+              <div style={{ display: 'inline-block' }}>
+                <span><Icon style={{ marginRight: '10px' }} /></span>
+                <span>{Text}</span>
+              </div>
             </div>
           )
         })
@@ -27,12 +33,12 @@ const renderComponent = () => {
 const items: TabsProps['items'] = [
   {
     key: '1',
-    label: <div style={{fontSize:'18px',width:'100px',textAlign:'center'}}>组件</div>,
+    label: <div style={{ fontSize: '18px', width: '100px', textAlign: 'center' }}>组件</div>,
     children: renderComponent(),
   },
   {
     key: '2',
-    label: <div style={{fontSize:'18px',width:'100px',textAlign:'center'}}>组件</div>,
+    label: <div style={{ fontSize: '18px', width: '100px', textAlign: 'center' }}>数据</div>,
     children: 'Content of Tab Pane 2',
   },
 ];
