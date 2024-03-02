@@ -1,6 +1,6 @@
 function AttributePanelArea() {
   return (
-    <div>attributePanelArea</div>
+    <div>attributePanel</div>
   )
 }
 

@@ -5,19 +5,20 @@ import * as components from './components'
 import { componentIconMap, componentTextMap } from './staticUtil/iconList'
 import './style'
 
-const onChange = (key: string) => {
-  console.log(key);
-};
+const onDragStart = (name: any) => {
+  window.nowCom = name
+}
 
 const renderComponent = () => {
   return (
     <div className='componetGroup'>
       {
+        // components是一个对象，因此用Object.keys返回components对象的所有属性，返回值是数组，数组的每一项就是components的属性
         Object.keys(components).map((name: string, index: number) => {
           const Icon = componentIconMap[name]
           const Text = componentTextMap[name]
           return (
-            <div key={index} draggable='true' className='componentItem'>
+            <div key={index} draggable='true' className='componentItem' onDragStart={() => { onDragStart(name) }}>
               <div style={{ display: 'inline-block' }}>
                 <span><Icon style={{ marginRight: '10px' }} /></span>
                 <span>{Text}</span>
@@ -46,7 +47,7 @@ const items: TabsProps['items'] = [
 const ComponentArea: React.FC = () => {
   return (
     <div className='componentArea'>
-      <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
+      <Tabs defaultActiveKey="1" items={items} />
     </div>
   )
 };
