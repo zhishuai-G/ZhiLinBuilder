@@ -1,7 +1,9 @@
+import { Button as ZLButton } from 'antd';
+
 function Button() {
   return (
     <div>
-      Button
+      <ZLButton>按钮</ZLButton>
     </div>
   )
 }
