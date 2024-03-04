@@ -1,7 +1,9 @@
+import { Input as ZLInput } from 'antd';
+
 function Input() {
   return (
     <div>
-      Input
+      <ZLInput />
     </div>
   )
 }

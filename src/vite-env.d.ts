@@ -2,6 +2,9 @@
 
 export declare global {
   interface Window {
-    nowCom: any;
+    nowCom: any
+    renderCom: any
+    comList: any
+    setComList: any
   }
 }
