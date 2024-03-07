@@ -66,11 +66,16 @@ function CanvasArea(pros: any) {
         top: e.clientY + 'px'
       }
       let comId = `comId_${Date.now()}`
-      comList.push({
+      let comNode = {
         name: nowCom,
         comId,
         style
-      })
+      }
+      comList.push(comNode)
+      window.renderCom = comNode;
+      window.comList = comList;
+      window.setComList = setComList
+      setSelectId(comId)
     }
     setComList([...comList])
   }
@@ -82,7 +87,7 @@ function CanvasArea(pros: any) {
           return (
             <div onClick={() => { selectCom(item) }} draggable onDragStart={(e: any) => { onDragStart(item, e)() }} key={item.comId}>
               <span className={item.comId === selectId ? 'selectCom' : ''} style={item.style}>
-                {/* 直接解构，把右侧属性面板更改的值全部传递给组价 */}
+                {/* 直接解构，把右侧属性面板更改的值全部传递给组件 */}
                 <Com {...item} />
               </span>
             </div>

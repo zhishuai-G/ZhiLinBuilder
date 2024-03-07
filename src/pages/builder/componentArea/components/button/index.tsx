@@ -1,11 +1,19 @@
 import { Button as ZLButton } from 'antd';
 
 function Button(props: any) {
+  const { caption, danger, disabled, ghost, shape, size} = props
   console.log(props);
-  const { caption } = props
   return (
     <div>
-      <ZLButton >{caption || '按钮'}</ZLButton>
+      <ZLButton
+        danger={danger}
+        disabled={disabled}
+        ghost={ghost}
+        shape={shape}
+        size={size}
+        >
+          {caption || '按钮'}
+      </ZLButton>
     </div>
   )
 }
