@@ -2,7 +2,7 @@ import { Button as ZLButton } from 'antd';
 
 function Button(props: any) {
   const { caption, danger, disabled, ghost, shape, size} = props
-  console.log(props);
+  
   return (
     <div>
       <ZLButton

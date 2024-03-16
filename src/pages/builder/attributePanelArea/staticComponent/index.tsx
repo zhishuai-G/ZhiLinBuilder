@@ -1,19 +1,19 @@
-import React from 'react'
 import { Select, Switch, Input } from 'antd';
 
 export default function ComponentType(props: any) {
-  const { onChange, type, defaultValue, options } = props
-  
+
+  const { onChange, type, defaultValue, options, value, selectComNode } = props
+
   const getComponent = () => {
     switch (type) {
       case 'input': {
-        return <Input style={{width:'120px'}} defaultValue={defaultValue} onChange = {onChange}/>
+        return <Input value={selectComNode[value] || ''} style={{ width: '120px' }} defaultValue={defaultValue} onChange={onChange} />
       }
       case 'switch': {
-        return <Switch defaultValue={defaultValue} onChange = {onChange}/>
+        return <Switch value={selectComNode[value] || false} defaultValue={defaultValue} onChange={onChange} />
       }
       case 'select': {
-        return <Select style={{width:'120px'}}  options={options} defaultValue={defaultValue} onChange={onChange}></Select>
+        return <Select value={selectComNode[value] || defaultValue} style={{ width: '120px' }} options={options} defaultValue={defaultValue} onChange={onChange}></Select>
       }
     }
   }
@@ -23,4 +23,3 @@ export default function ComponentType(props: any) {
     </div>
   )
 }
-
