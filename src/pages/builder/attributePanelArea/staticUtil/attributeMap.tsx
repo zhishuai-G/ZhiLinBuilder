@@ -30,7 +30,7 @@ const buttonAttribute: ComAttribute[] = [
     label: '设置幽灵按钮',
     value: 'ghost',
     type: 'switch'
-  }, 
+  },
   {
     label: '设置按钮形状',
     value: 'shape',
@@ -67,8 +67,37 @@ const buttonAttribute: ComAttribute[] = [
   }
 ]
 
+const inputAttribute: ComAttribute[] = [
+  {
+    label: '设置后置标签',
+    value: 'addonAfter',
+    type: 'input'
+  },
+  {
+    label: '设置前置标签',
+    value: 'addonBefore',
+    type: 'input'
+  },
+  {
+    label: '显示清除图标',
+    value: 'allowClear',
+    type: 'switch'
+  },
+  {
+    label: '默认值',
+    value: 'defaultValue',
+    type: 'input'
+  },
+  {
+    label: '禁用',
+    value: 'disabled',
+    type: 'switch'
+  },
+]
+
 const attributeMap: AttributeMap = {
-  Button: buttonAttribute
+  Button: buttonAttribute,
+  Input: inputAttribute
 }
 
 export {
