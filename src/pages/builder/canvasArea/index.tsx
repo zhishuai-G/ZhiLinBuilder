@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react'
 import * as components from '../componentArea/components'
-import store from '../../../store'
-import { subscribeHook } from '../../../store/subscribe'
 import './style'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSelectCom, setDragCom, setComList } from '../../../store/slices/comSlice'
 
 function CanvasArea(props: any) {
 
@@ -20,16 +20,15 @@ function CanvasArea(props: any) {
     endTop: void 0
   })
 
-  // const [comList, setComList] = useState<ComJson[]>([])  // 拖拽到画布区的组件的集合
-  const comList = JSON.parse(JSON.stringify(store.getState().comList))  // 拖拽到画布区的组件的集合
-  // const [dragCom, setDragCom] = useState<ComJson | null>(null)  // 记录当前组件是在画布区域还是在组件区域
+  const comReducer = useSelector((state: any) => state.comReducer)
+  const dispatch = useDispatch()
+
+  const comList = JSON.parse(JSON.stringify(comReducer.comList))  // 拖拽到画布区的组件的集合
   const [dragComId, setDragComId] = useState<string>('') // 当前拖拽组件的信息
   const [selectId, setSelectId] = useState<string>('')  // 当前选中节点的comId
 
   // 拿到从组件区域拖拽到画布区域的组件类型
-  const nowCom = store.getState().dragCom
-  // 当store中的数据发生变化,重新渲染CanvasArea组件
-  subscribeHook()
+  const nowCom = comReducer.dragCom
 
   const onDragStart = (com: any, e: any) => {
     return () => {
@@ -51,7 +50,7 @@ function CanvasArea(props: any) {
   const selectCom = (item: any) => {
     setSelectId(item.comId)
     // 更新store里面的selectCom,当前点击选中的组件的comId
-    store.dispatch({ type: 'changeSelectCom', value: item.comId })
+    dispatch(setSelectCom(item.comId))
   }
 
   const onDrop = (e: any) => {
@@ -68,7 +67,7 @@ function CanvasArea(props: any) {
       }
       // 拖拽完组件要清空id
       setDragComId('')
-      store.dispatch({ type: 'changeNowCom', value: dragComId })
+      dispatch(setDragCom(dragComId))
     } else { // 从组件区域拖动到画布区域的逻辑
       style = {
         position: 'absolute',
@@ -84,13 +83,13 @@ function CanvasArea(props: any) {
       comList.push(comNode)
       setSelectId(comId)
       // 更新store里面的selectCom,当前点击选中的组件的comId
-      store.dispatch({ type: 'changeSelectCom', value: comId })
+      dispatch(setSelectCom(comId))
     }
     // 更新store里面的comList
-    store.dispatch({ type: 'changeComList', value: comList })
+    dispatch(setComList(comList))
   }
 
-  console.log(comList);
+  console.log(comReducer);
 
   return (
     <div className='canvasArea' onDragEnter={onDragEnter} onDragOver={onDragOver} onDrop={onDrop}>

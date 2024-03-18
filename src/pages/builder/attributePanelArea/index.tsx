@@ -2,17 +2,17 @@ import { Tabs, TabsProps } from 'antd';
 import './style'
 import { attributeMap } from './staticUtil/attributeMap';
 import ComponentType from './staticComponent';
-import store from '../../../store'
-import { subscribeHook } from '../../../store/subscribe'
+import { useDispatch, useSelector } from 'react-redux';
+import { setComList } from '../../../store/slices/comSlice';
 
 const AttributePanelArea: React.FC = () => {
 
-  const comList = JSON.parse(JSON.stringify(store.getState().comList))  // 拖拽到画布区的组件的集合
-  const selectCom = store.getState().selectCom // 在画布区点击选中的组件的comId
-  const selectComNode = comList.find((item: any) => item.comId === selectCom) // 在画布区点击选中的组件的对象
+  const comReducer = useSelector((state: any) => state.comReducer)
+  const dispatch = useDispatch()
 
-  // 当store中的数据发生变化,重新渲染AttributePanelArea组件,意思就是我们拖动组件到画布区时,就在右侧渲染出当前组件对应的属性,样式等数据
-  subscribeHook()
+  const comList = JSON.parse(JSON.stringify(comReducer.comList))  // 拖拽到画布区的组件的集合
+  const selectCom = comReducer.selectCom // 在画布区点击选中的组件的comId
+  const selectComNode = comList.find((item: any) => item.comId === selectCom) // 在画布区点击选中的组件的对象
 
   const renderAttribute = () => {
 
@@ -24,7 +24,7 @@ const AttributePanelArea: React.FC = () => {
         let attribute = typeof e === 'object' ? e.target.value : e;
         selectComNode[value] = attribute  // 把当前的属性绑定到对应组件的selectComNode对象上
         // 因为当前点击选中组件的对象selectComNode发生了变化,所以更新store里面的comList
-        store.dispatch({ type: 'changeComList', value: comList })
+        dispatch(setComList(comList))
       }
     }
 

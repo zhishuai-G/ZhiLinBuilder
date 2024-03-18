@@ -1,24 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from "@reduxjs/toolkit";
+import { comReducer } from './slices/comSlice'
 
-const initialState = { comList: [], dragCom: void 0 }
-
-const comReducer = (state: any = initialState, action: any) => {
-  switch (action.type) {
-    case 'changeNowCom': {
-      return { ...state, dragCom: action.value }
-    }
-    case 'changeComList': {
-      return { ...state, comList: action.value }
-    }
-    case 'changeSelectCom': {
-      return { ...state, selectCom: action.value }
-    }
-    default: {
-      return state
-    }
+const store = configureStore({
+  reducer: {
+    comReducer
   }
-}
+})
 
-export default configureStore({
-  reducer: comReducer
-});
+export default store

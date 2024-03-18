@@ -3,13 +3,16 @@ import { Tabs } from 'antd';
 import type { TabsProps } from 'antd';
 import * as components from './components'
 import { componentIconMap, componentTextMap } from './staticUtil/iconList'
-import store from '../../../store'
 import './style'
+import { useDispatch } from 'react-redux';
+import { setDragCom } from '../../../store/slices/comSlice';
 
 const ComponentArea: React.FC = () => {
 
+  const dispatch = useDispatch()
+
   const onDragStart = (name: any) => {
-    store.dispatch({ type: 'changeNowCom', value: name })
+    dispatch(setDragCom(name))
   }
 
   const renderComponent = () => {
