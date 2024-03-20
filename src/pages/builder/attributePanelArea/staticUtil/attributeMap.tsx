@@ -1,105 +1,22 @@
+import buttonAttribute from "./comAttribute/buttonAttribute"
+import iconAttribute from "./comAttribute/iconAttribute"
+import inputAttribute from "./comAttribute/inputAttribute"
+
 interface AttributeMap {
   [key: string]: ComAttribute[]
 }
 
-interface ComAttribute {
+export interface ComAttribute {
   label: string,
   value: string,
   type: string,
   options?: Array<any>,
-  defaultValue?: string
+  defaultValue?: string | number,
+  modalType?: string
 }
 
-const buttonAttribute: ComAttribute[] = [
-  {
-    label: '设置按钮文字',
-    value: 'caption',
-    type: 'input'
-  },
-  {
-    label: '设置危险按钮',
-    value: 'danger',
-    type: 'switch'
-  },
-  {
-    label: '设置按钮禁用',
-    value: 'disabled',
-    type: 'switch'
-  },
-  {
-    label: '设置幽灵按钮',
-    value: 'ghost',
-    type: 'switch'
-  },
-  {
-    label: '设置按钮形状',
-    value: 'shape',
-    type: 'select',
-    options: [
-      {
-        value: 'default'
-      },
-      {
-        value: 'circle'
-      },
-      {
-        value: 'round'
-      }
-    ],
-    defaultValue: 'default'
-  },
-  {
-    label: '设置按钮大小',
-    value: 'size',
-    type: 'select',
-    options: [
-      {
-        value: 'large'
-      },
-      {
-        value: 'default'
-      },
-      {
-        value: 'small'
-      }
-    ],
-    defaultValue: 'default'
-  }
-]
-
-const inputAttribute: ComAttribute[] = [
-  {
-    label: '设置后置标签',
-    value: 'addonAfter',
-    type: 'input'
-  },
-  {
-    label: '设置前置标签',
-    value: 'addonBefore',
-    type: 'input'
-  },
-  {
-    label: '显示清除图标',
-    value: 'allowClear',
-    type: 'switch'
-  },
-  {
-    label: '默认值',
-    value: 'defaultValue',
-    type: 'input'
-  },
-  {
-    label: '禁用',
-    value: 'disabled',
-    type: 'switch'
-  },
-]
-
-const attributeMap: AttributeMap = {
+export const attributeMap: AttributeMap = {
   Button: buttonAttribute,
-  Input: inputAttribute
-}
-
-export {
-  attributeMap
+  Input: inputAttribute,
+  Icon: iconAttribute
 }
