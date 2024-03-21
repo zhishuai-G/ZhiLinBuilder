@@ -1,6 +1,6 @@
 import React from 'react';
-import { Tabs } from 'antd';
-import type { TabsProps } from 'antd';
+import { Tabs, Collapse } from 'antd';
+import type { TabsProps, CollapseProps } from 'antd';
 import * as components from './components'
 import { componentIconMap, componentTextMap } from './staticUtil/iconList'
 import './style'
@@ -15,12 +15,15 @@ const ComponentArea: React.FC = () => {
     dispatch(setDragCom(name))
   }
 
-  const renderComponent = () => {
+  // 渲染组件
+  const renderComponent = (comTypeList: string[]) => {
+    // components是一个对象，因此用Object.keys返回components对象的所有属性，返回值是数组，数组的每一项就是components的属性
+    const list = Object.keys(components).filter(item => comTypeList.includes(item))
+
     return (
       <div className='componetGroup'>
         {
-          // components是一个对象，因此用Object.keys返回components对象的所有属性，返回值是数组，数组的每一项就是components的属性
-          Object.keys(components).map((name: string, index: number) => {
+          list.map((name: string, index: number) => {
             const Icon = componentIconMap[name]
             const Text = componentTextMap[name]
             return (
@@ -37,11 +40,38 @@ const ComponentArea: React.FC = () => {
     )
   }
 
+  // 渲染折叠面板，对组件进行分组
+  const renderCollapse = () => {
+
+    const items: CollapseProps['items'] = [
+      {
+        key: 'universalComponents',
+        label: '通用组件',
+        children: renderComponent(['Button', 'Icon']),
+      },
+      {
+        key: 'dataEntryComponents',
+        label: '数据录入组件',
+        children: renderComponent(['Input', 'Checkbox', 'Radio', 'Switch', 'Rate']),
+      },
+      {
+        key: 'otherComponents',
+        label: '其他组件',
+        children: [],
+      },
+    ];
+
+    return (
+      <Collapse items={items} bordered={false} defaultActiveKey={['universalComponents']} />
+    )
+  }
+
+
   const items: TabsProps['items'] = [
     {
       key: '1',
       label: <div style={{ fontSize: '18px', width: '100px', textAlign: 'center' }}>组件</div>,
-      children: renderComponent(),
+      children: renderCollapse(),
     },
     {
       key: '2',
