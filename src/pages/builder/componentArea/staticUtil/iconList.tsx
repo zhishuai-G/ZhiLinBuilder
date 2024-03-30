@@ -2,7 +2,8 @@ import {
   TabletOutlined,
   FrownOutlined,
   DoubleRightOutlined,
-  AreaChartOutlined
+  AreaChartOutlined,
+  FormOutlined
 } from '@ant-design/icons';
 
 interface ComponentIconMap {
@@ -20,7 +21,8 @@ const componentIconMap: ComponentIconMap = {
   Checkbox: AreaChartOutlined,
   Radio: AreaChartOutlined,
   Switch: AreaChartOutlined,
-  Rate: AreaChartOutlined
+  Rate: AreaChartOutlined,
+  Form: FormOutlined
 }
 
 const componentTextMap: ComponentTextMap = {
@@ -30,7 +32,8 @@ const componentTextMap: ComponentTextMap = {
   Checkbox: "多选框",
   Radio: "单选框",
   Switch: "开关",
-  Rate: "评分"
+  Rate: "评分",
+  Form: "表单"
 }
 
 export {

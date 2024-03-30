@@ -26,6 +26,11 @@ const inputAttribute: ComAttribute[] = [
     value: 'disabled',
     type: 'switch'
   },
+  {
+    label: '标签',
+    value: 'label',
+    type: 'input'
+  }
 ]
 
 export default inputAttribute

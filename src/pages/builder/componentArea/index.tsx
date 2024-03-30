@@ -55,9 +55,9 @@ const ComponentArea: React.FC = () => {
         children: renderComponent(['Input', 'Checkbox', 'Radio', 'Switch', 'Rate']),
       },
       {
-        key: 'otherComponents',
-        label: '其他组件',
-        children: [],
+        key: 'layouContainer',
+        label: '布局容器',
+        children: renderComponent(['Form']),
       },
     ];
 

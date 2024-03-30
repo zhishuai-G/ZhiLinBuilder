@@ -4,6 +4,7 @@ import { ComponentType, useEffect, useState } from "react";
 import './style'
 import { setComList } from '../../../store/slices/comSlice';
 import { useDispatch, useSelector } from "react-redux";
+import { getComById } from "../../../utils/nodeUtils";
 
 export default function IconSelect(props: any) {
   const comReducer = useSelector((state: any) => state.comReducer)
@@ -11,7 +12,7 @@ export default function IconSelect(props: any) {
 
   const comList = JSON.parse(JSON.stringify(comReducer.comList))  // 拖拽到画布区的组件的集合
   const selectCom = comReducer.selectCom // 在画布区点击选中的组件的comId
-  const selectComNode = comList.find((item: any) => item.comId === selectCom) // 在画布区点击选中的组件的对象
+  const selectComNode = getComById(selectCom, comList) // 在画布区点击选中的组件的对象
 
   const [selectIcon, setSelectIcon] = useState('') // 在模态框里面选择的图标
 

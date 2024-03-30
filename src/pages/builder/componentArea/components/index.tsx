@@ -5,6 +5,7 @@ import Checkbox from './checkbox'
 import Radio from './radio'
 import Switch from './switch'
 import Rate from './rate'
+import Form from './form'
 
 export {
   Button,
@@ -13,5 +14,6 @@ export {
   Checkbox,
   Radio,
   Switch,
-  Rate
+  Rate,
+  Form
 }

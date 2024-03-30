@@ -4,6 +4,7 @@ import { attributeMap } from './staticUtil/attributeMap';
 import ComponentType from './staticComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { setComList } from '../../../store/slices/comSlice';
+import { getComById } from '../../../utils/nodeUtils';
 
 const AttributePanelArea: React.FC = () => {
 
@@ -12,7 +13,7 @@ const AttributePanelArea: React.FC = () => {
 
   const comList = JSON.parse(JSON.stringify(comReducer.comList))  // 拖拽到画布区的组件的集合
   const selectCom = comReducer.selectCom // 在画布区点击选中的组件的comId
-  const selectComNode = comList.find((item: any) => item.comId === selectCom) // 在画布区点击选中的组件的对象
+  const selectComNode = getComById(selectCom,comList) // 在画布区点击选中的组件的对象
 
   const renderAttribute = () => {
 
