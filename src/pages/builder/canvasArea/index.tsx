@@ -171,8 +171,6 @@ function CanvasArea(props: any) {
       </div>
     )
   }
-  
-  console.log('选中', selectId);
 
   return (
     <div className='canvasArea' onDragEnter={onDragEnter} onDragOver={onDragOver} onDrop={onDrop}>

@@ -14,7 +14,8 @@ const rateAttribute: ComAttribute[] = [
   {
     label: 'star总数',
     value: 'count',
-    type: 'number'
+    type: 'number',
+    defaultValue: 5
   },
   {
     label: '只读',

@@ -45,6 +45,4 @@ const formAttribute: ComAttribute[] = [
   
 ]
 
-export {
-  formAttribute
-}
+export default formAttribute
