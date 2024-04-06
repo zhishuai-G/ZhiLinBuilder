@@ -7,12 +7,12 @@ export default function Form(props: any) {
 
   const comList = JSON.parse(JSON.stringify(comReducer.comList))  // 拖拽到画布区的组件的集合
 
-  const { children, disabled, labelAlign, size, colon, labelWrap } = props
+  const { children, disabled, labelAlign, size, colon, labelWrap, comStyle = {} } = props
 
   return (
     <div>
       <ZLForm
-        style={{ width: '400px', height: '400px', border: ' 1px solid blue', marginBottom: '0px' }}
+        style={{ width: '400px', height: '400px', border: ' 1px solid blue', marginBottom: '0px', ...comStyle }}
         disabled={disabled}
         labelAlign={labelAlign}
         labelWrap={labelWrap}

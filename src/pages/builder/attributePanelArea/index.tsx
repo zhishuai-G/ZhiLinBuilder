@@ -63,13 +63,13 @@ const AttributePanelArea: React.FC = () => {
       return (e: any) => {
         let attribute = e;
         if (typeof e === 'object') {
-          if (['color', 'backgroundColor'].includes(value)) {
+          if (['color', 'backgroundColor', 'borderColor'].includes(value)) {
             attribute = e?.toHexString()
           } else {
             attribute = e?.target?.value
           }
         }
-        if (['width', 'height'].includes(value)) {
+        if (['width', 'height','borderWidth','fontSize'].includes(value)) {
           attribute += 'px'
         }
         if (!selectComNode?.comStyle) {

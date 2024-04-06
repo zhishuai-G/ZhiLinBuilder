@@ -1,7 +1,7 @@
 import { useState, useEffect, ComponentType } from 'react';
 
 export default function Icon(props: any) {
-  let { rotate, spin, type = "StepBackwardOutlined" } = props;
+  let { rotate, spin, type = "StepBackwardOutlined", comStyle = {} } = props;
   const [IconComponent, setIconComponent] = useState<ComponentType<any> | null>(null);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function Icon(props: any) {
 
   return (
     <div>
-      {IconComponent && <IconComponent rotate={rotate} spin={spin} />}
+      {IconComponent && <IconComponent style={comStyle} rotate={rotate} spin={spin} />}
     </div>
   );
 }
