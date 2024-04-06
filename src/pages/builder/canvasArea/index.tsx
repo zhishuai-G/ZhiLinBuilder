@@ -4,7 +4,9 @@ import './style'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSelectCom, setDragCom, setComList } from '../../../store/slices/comSlice'
 import { getComById } from '../../../utils/nodeUtils'
+import { componentTextMap } from '../componentArea/staticUtil/iconList'
 
+let num = 1
 export interface ComJson {
   name: string,
   // 组件的唯一ID
@@ -68,7 +70,7 @@ function CanvasArea(props: any) {
     distance.current.endTop = e.clientY
     let style: any
     if (dragComId) { // 画布区域自由拖拽的逻辑
-      const node =getComById(dragComId,comList) // 找到当前在画布区拖拽对象
+      const node = getComById(dragComId, comList) // 找到当前在画布区拖拽对象
       node.style = {
         ...node.style,
         left: parseInt(node.style.left) + (e.clientX - (distance.current.startLeft || 0)) + 'px',
@@ -87,7 +89,8 @@ function CanvasArea(props: any) {
       let comNode = {
         name: nowCom,
         comId,
-        style
+        style,
+        caption: componentTextMap[nowCom] + num++
       }
       comList.push(comNode)
       setSelectId(comId)
@@ -100,9 +103,9 @@ function CanvasArea(props: any) {
 
   const onDropContainer = (com: ComJson) => {
     return (e: any) => {
-      const dragCom = getComById(dragComId,comList) // 找到当前在画布区拖拽对象
+      const dragCom = getComById(dragComId, comList) // 找到当前在画布区拖拽对象
       // 判断是不是往画布区域的form容器里面拖拽组件
-      if (['Form','Card'].includes(com.name)) {
+      if (['Form', 'Card'].includes(com.name)) {
         // 判断组件从画布区拖到form容器的逻辑
         if (dragCom && dragCom !== com) {
           // 找到当前组件在comList中的位置
@@ -132,11 +135,12 @@ function CanvasArea(props: any) {
         let comId = `comId_${Date.now()}`
         const comNode = {
           name: nowCom,
-          comId
+          comId,
+          caption: componentTextMap[nowCom] + num++
         }
 
         // 判断组件区域的组件如果是form容器，就不能拖到画布区域的form容器里面
-        if (['Form','Card'].includes(comNode.name)) {
+        if (['Form', 'Card'].includes(comNode.name)) {
           e.stopPropagation()
           return
         }

@@ -1,15 +1,29 @@
-import React from 'react';
-import { Tabs, Collapse } from 'antd';
+import React, { useState } from 'react';
+import { Tabs, Collapse, Tree, Dropdown } from 'antd';
 import type { TabsProps, CollapseProps } from 'antd';
 import * as components from './components'
 import { componentIconMap, componentTextMap } from './staticUtil/iconList'
 import './style'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setDragCom } from '../../../store/slices/comSlice';
+import { EditJson } from '../../modal';
 
 const ComponentArea: React.FC = () => {
 
+  const comReducer = useSelector((state: any) => state.comReducer)
+  const comList = JSON.parse(JSON.stringify(comReducer.comList))  // 拖拽到画布区的组件的集合
   const dispatch = useDispatch()
+
+  const [showJson, setShowJson] = useState(false) // 控制是否显示协议的弹窗
+  const [jsonComId, setJsonComId] = useState('') // 保存要查看协议的组件ID
+
+  // 下拉菜单展示的内容
+  const dropItems = [
+    {
+      label: '查看JSON',
+      key: 'showJson'
+    }
+  ]
 
   const onDragStart = (name: any) => {
     dispatch(setDragCom(name))
@@ -66,22 +80,77 @@ const ComponentArea: React.FC = () => {
     )
   }
 
+  // 右键触发下拉菜单内容的点击事件
+  const menuOnClick = (comId: string) => {
+    return (menuItem: any) => {
+      if (menuItem.key === 'showJson') {
+        setShowJson(true)
+        setJsonComId(comId)
+      }
+    }
+  }
+
+  // 渲染数据部分
+  const renderTreeList = () => {
+
+    const toTreeData = (arr: []) => {
+      return arr?.map((item: any) => {
+        const node: any = {
+          title: (
+            <div>
+              <Dropdown
+                menu={{ items: dropItems, onClick: menuOnClick(item.comId) }}
+                // contextMenu：右键点击触发
+                trigger={['contextMenu']}
+              >
+                <span>{item.caption}</span>
+              </Dropdown>
+            </div>
+          ),
+          key: item.comId,
+        }
+        if (item?.childList) {
+          node.children = toTreeData(item.childList)
+        }
+        return node
+      })
+    }
+
+    const treeData = [
+      {
+        title: '组件协议',
+        key: 'component-protocol',
+        children: toTreeData(comList)
+      }
+    ]
+
+    return (
+      <Tree
+        className='treeList'
+        showLine={true}
+        treeData={treeData}
+      />
+    );
+  }
+
+
 
   const items: TabsProps['items'] = [
     {
-      key: '1',
+      key: 'components',
       label: <div style={{ fontSize: '18px', width: '100px', textAlign: 'center' }}>组件</div>,
       children: renderCollapse(),
     },
     {
-      key: '2',
+      key: 'data',
       label: <div style={{ fontSize: '18px', width: '100px', textAlign: 'center' }}>数据</div>,
-      children: 'Content of Tab Pane 2',
+      children: renderTreeList(),
     },
   ];
   return (
     <div className='componentArea'>
       <Tabs defaultActiveKey="1" items={items} />
+      <EditJson jsonComId={jsonComId} showJson={showJson} setShowJson={setShowJson}></EditJson>
     </div>
   )
 };
