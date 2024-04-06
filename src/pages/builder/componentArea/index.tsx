@@ -57,7 +57,7 @@ const ComponentArea: React.FC = () => {
       {
         key: 'layouContainer',
         label: '布局容器',
-        children: renderComponent(['Form']),
+        children: renderComponent(['Form', 'Card']),
       },
     ];
 

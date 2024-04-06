@@ -17,16 +17,16 @@ export default function ComponentType(props: any) {
   const getComponent = () => {
     switch (type) {
       case 'input': {
-        return <Input value={selectComNode[value] || ''} style={{ width: '120px' }} defaultValue={defaultValue} onChange={onChange} />
+        return <Input value={selectComNode?.[value] || ''} style={{ width: '120px' }} defaultValue={defaultValue} onChange={onChange} />
       }
       case 'switch': {
-        return <Switch value={selectComNode[value] || false} defaultValue={defaultValue} onChange={onChange} />
+        return <Switch value={selectComNode?.[value] || false} defaultValue={defaultValue} onChange={onChange} />
       }
       case 'select': {
-        return <Select value={selectComNode[value] || defaultValue} style={{ width: '120px' }} options={options} defaultValue={defaultValue} onChange={onChange}></Select>
+        return <Select value={selectComNode?.[value] || selectComNode?.comStyle?.[value] || defaultValue} style={{ width: '120px' }} options={options} defaultValue={defaultValue} onChange={onChange}></Select>
       }
       case 'number': {
-        return <InputNumber value={selectComNode[value] || parseInt(selectComNode?.comStyle?.[value]) || defaultValue} style={{ width: '120px' }} defaultValue={defaultValue} onChange={onChange}></InputNumber>
+        return <InputNumber value={selectComNode?.[value] || parseInt(selectComNode?.comStyle?.[value]) || defaultValue} style={{ width: '120px' }} defaultValue={defaultValue} onChange={onChange}></InputNumber>
       }
       case 'modal': {
         return <Button style={{ width: '120px' }} onClick={showModal}>选择图标</Button>

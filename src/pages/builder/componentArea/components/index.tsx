@@ -6,6 +6,7 @@ import Radio from './radio'
 import Switch from './switch'
 import Rate from './rate'
 import Form from './form'
+import Card from './card'
 
 export {
   Button,
@@ -15,5 +16,6 @@ export {
   Radio,
   Switch,
   Rate,
-  Form
+  Form,
+  Card
 }

@@ -102,7 +102,7 @@ function CanvasArea(props: any) {
     return (e: any) => {
       const dragCom = getComById(dragComId,comList) // 找到当前在画布区拖拽对象
       // 判断是不是往画布区域的form容器里面拖拽组件
-      if (com.name === 'Form') {
+      if (['Form','Card'].includes(com.name)) {
         // 判断组件从画布区拖到form容器的逻辑
         if (dragCom && dragCom !== com) {
           // 找到当前组件在comList中的位置
@@ -136,7 +136,7 @@ function CanvasArea(props: any) {
         }
 
         // 判断组件区域的组件如果是form容器，就不能拖到画布区域的form容器里面
-        if (comNode.name === 'Form') {
+        if (['Form','Card'].includes(comNode.name)) {
           e.stopPropagation()
           return
         }

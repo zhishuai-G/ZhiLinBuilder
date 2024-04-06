@@ -6,6 +6,7 @@ import radioAttribute from "./comAttribute/radioAttribute"
 import switchAttribute from "./comAttribute/switchAttribute"
 import rateAttribute from './comAttribute/rateAttribute'
 import formAttribute from "./comAttribute/formAttribute"
+import cardAttribute from "./comAttribute/cardAttribute"
 
 interface AttributeMap {
   [key: string]: ComAttribute[]
@@ -28,5 +29,6 @@ export const attributeMap: AttributeMap = {
   Radio: radioAttribute,
   Switch: switchAttribute,
   Rate: rateAttribute,
-  Form: formAttribute
+  Form: formAttribute,
+  Card:cardAttribute
 }

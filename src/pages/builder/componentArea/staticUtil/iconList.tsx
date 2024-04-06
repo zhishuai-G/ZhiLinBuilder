@@ -3,7 +3,8 @@ import {
   FrownOutlined,
   DoubleRightOutlined,
   AreaChartOutlined,
-  FormOutlined
+  FormOutlined,
+  CreditCardOutlined
 } from '@ant-design/icons';
 
 interface ComponentIconMap {
@@ -22,7 +23,8 @@ const componentIconMap: ComponentIconMap = {
   Radio: AreaChartOutlined,
   Switch: AreaChartOutlined,
   Rate: AreaChartOutlined,
-  Form: FormOutlined
+  Form: FormOutlined,
+  Card: CreditCardOutlined
 }
 
 const componentTextMap: ComponentTextMap = {
@@ -33,7 +35,8 @@ const componentTextMap: ComponentTextMap = {
   Radio: "单选框",
   Switch: "开关",
   Rate: "评分",
-  Form: "表单"
+  Form: "表单",
+  Card: '卡片'
 }
 
 export {
