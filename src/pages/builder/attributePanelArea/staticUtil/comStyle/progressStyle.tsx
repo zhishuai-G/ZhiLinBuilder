@@ -1,6 +1,6 @@
 import { Style } from "../styleMap"
 
-const formStyle: Style[] = [
+const progressStyle: Style[] = [
   {
     label: '设置宽度',
     value: 'width',
@@ -10,6 +10,16 @@ const formStyle: Style[] = [
     label: '设置高度',
     value: 'height',
     type: 'number'
+  },
+  {
+    label: '字体大小',
+    value: 'fontSize',
+    type: 'number'
+  },
+  {
+    label: '字体颜色',
+    value: 'color',
+    type: 'color'
   },
   {
     label: '背景颜色',
@@ -48,4 +58,4 @@ const formStyle: Style[] = [
   }
 ]
 
-export default formStyle
+export default progressStyle

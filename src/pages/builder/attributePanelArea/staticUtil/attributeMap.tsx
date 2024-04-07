@@ -7,6 +7,11 @@ import switchAttribute from "./comAttribute/switchAttribute"
 import rateAttribute from './comAttribute/rateAttribute'
 import formAttribute from "./comAttribute/formAttribute"
 import cardAttribute from "./comAttribute/cardAttribute"
+import floatButtonAttribute from "./comAttribute/floatButtonAttribute"
+import alertAttribute from "./comAttribute/alertAttribute"
+import progressAttribute from "./comAttribute/progressAttribute"
+import qrCodeAttribute from "./comAttribute/qrCodeAttribute"
+import tagAttribute from "./comAttribute/tagAttribute"
 
 interface AttributeMap {
   [key: string]: ComAttribute[]
@@ -30,5 +35,10 @@ export const attributeMap: AttributeMap = {
   Switch: switchAttribute,
   Rate: rateAttribute,
   Form: formAttribute,
-  Card:cardAttribute
+  Card: cardAttribute,
+  FloatButton: floatButtonAttribute,
+  Alert: alertAttribute,
+  Progress: progressAttribute,
+  QRCode: qrCodeAttribute,
+  Tag: tagAttribute
 }

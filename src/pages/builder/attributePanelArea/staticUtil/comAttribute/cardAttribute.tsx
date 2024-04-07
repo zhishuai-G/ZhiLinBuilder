@@ -1,4 +1,5 @@
 import { ComAttribute } from "../attributeMap"
+
 const cardAttribute: ComAttribute[] = [
   {
     label: '设置标题',

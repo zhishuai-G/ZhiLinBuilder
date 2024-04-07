@@ -7,6 +7,11 @@ import Switch from './switch'
 import Rate from './rate'
 import Form from './form'
 import Card from './card'
+import FloatButton from './floatButton'
+import Alert from './alert'
+import Progress from './progress'
+import QRCode from './qrCode'
+import Tag from './tag'
 
 export {
   Button,
@@ -17,5 +22,10 @@ export {
   Switch,
   Rate,
   Form,
-  Card
+  Card,
+  FloatButton,
+  Alert,
+  Progress,
+  QRCode,
+  Tag
 }

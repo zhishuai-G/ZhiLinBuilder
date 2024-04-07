@@ -1,4 +1,5 @@
 import { Style } from "../styleMap"
+
 const iconStyle: Style[] = [
   {
     label: '图标大小',

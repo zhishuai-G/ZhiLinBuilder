@@ -24,7 +24,14 @@ const AttributePanelArea: React.FC = () => {
 
     const changeComAttribute = (value: string) => {
       return (e: any) => {
-        let attribute = typeof e === 'object' ? e?.target?.value : e;
+        let attribute = e;
+        if (typeof e === 'object') {
+          if (['color', 'bgColor', 'strokeColor'].includes(value)) {
+            attribute = e?.toHexString()
+          } else {
+            attribute = e?.target?.value
+          }
+        }
         selectComNode[value] = attribute  // 把当前的属性绑定到对应组件的selectComNode对象上
         // 因为当前点击选中组件的对象selectComNode发生了变化,所以更新store里面的comList
         dispatch(setComList(comList))
@@ -69,7 +76,7 @@ const AttributePanelArea: React.FC = () => {
             attribute = e?.target?.value
           }
         }
-        if (['width', 'height','borderWidth','fontSize'].includes(value)) {
+        if (['width', 'height', 'borderWidth', 'fontSize'].includes(value)) {
           attribute += 'px'
         }
         if (!selectComNode?.comStyle) {

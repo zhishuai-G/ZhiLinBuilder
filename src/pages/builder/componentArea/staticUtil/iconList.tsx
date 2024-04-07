@@ -2,9 +2,16 @@ import {
   TabletOutlined,
   FrownOutlined,
   DoubleRightOutlined,
-  AreaChartOutlined,
+  CheckOutlined,
+  InfoCircleOutlined,
+  StarOutlined,
+  LoginOutlined,
   FormOutlined,
-  CreditCardOutlined
+  CreditCardOutlined,
+  AlertOutlined,
+  SmallDashOutlined,
+  QrcodeOutlined,
+  InstagramOutlined
 } from '@ant-design/icons';
 
 interface ComponentIconMap {
@@ -19,12 +26,17 @@ const componentIconMap: ComponentIconMap = {
   Button: TabletOutlined,
   Icon: FrownOutlined,
   Input: DoubleRightOutlined,
-  Checkbox: AreaChartOutlined,
-  Radio: AreaChartOutlined,
-  Switch: AreaChartOutlined,
-  Rate: AreaChartOutlined,
+  Checkbox: CheckOutlined,
+  Radio: InfoCircleOutlined,
+  Rate: StarOutlined,
+  Switch: LoginOutlined,
   Form: FormOutlined,
-  Card: CreditCardOutlined
+  Card: CreditCardOutlined,
+  FloatButton: TabletOutlined,
+  Alert: AlertOutlined,
+  Progress: SmallDashOutlined,
+  QRCode: QrcodeOutlined,
+  Tag: InstagramOutlined
 }
 
 const componentTextMap: ComponentTextMap = {
@@ -36,7 +48,12 @@ const componentTextMap: ComponentTextMap = {
   Switch: "开关",
   Rate: "评分",
   Form: "表单",
-  Card: '卡片'
+  Card: '卡片',
+  FloatButton: '悬浮按钮',
+  Alert: '警告提示',
+  Progress: '进度条',
+  QRCode: '二维码',
+  Tag: '标签'
 }
 
 export {

@@ -1,4 +1,5 @@
 import { Style } from "../styleMap"
+
 const inputStyle: Style[] = [
   {
     label: '设置宽度',

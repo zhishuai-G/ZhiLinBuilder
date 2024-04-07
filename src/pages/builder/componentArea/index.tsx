@@ -61,7 +61,7 @@ const ComponentArea: React.FC = () => {
       {
         key: 'universalComponents',
         label: '通用组件',
-        children: renderComponent(['Button', 'Icon']),
+        children: renderComponent(['Button', 'Icon', 'FloatButton']),
       },
       {
         key: 'dataEntryComponents',
@@ -73,6 +73,16 @@ const ComponentArea: React.FC = () => {
         label: '布局容器',
         children: renderComponent(['Form', 'Card']),
       },
+      {
+        key: 'feedbackComponent',
+        label: '反馈组件',
+        children: renderComponent(['Alert', 'Progress']),
+      },
+      {
+        key: 'dataDisplaycomponent',
+        label: '数据展示组件',
+        children: renderComponent(['QRCode', 'Tag']),
+      }
     ];
 
     return (
@@ -132,8 +142,6 @@ const ComponentArea: React.FC = () => {
       />
     );
   }
-
-
 
   const items: TabsProps['items'] = [
     {
