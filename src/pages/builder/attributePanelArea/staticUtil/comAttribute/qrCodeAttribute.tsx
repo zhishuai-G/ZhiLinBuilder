@@ -19,12 +19,12 @@ const qrCodeAttribute: ComAttribute[] = [
   {
     label: '二维码颜色',
     value: 'color',
-    type: 'color'
+    type: 'attributeColor'
   },
   {
     label: '二维码背景颜色',
     value: 'bgColor',
-    type: 'color'
+    type: 'attributeColor'
   },
   {
     label: '是否有边框',

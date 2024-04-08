@@ -19,7 +19,7 @@ const progressAttribute: ComAttribute[] = [
   {
     label: '进度条色彩',
     value: 'strokeColor',
-    type: 'color'
+    type: 'attributeColor'
   },
   {
     label: '状态',

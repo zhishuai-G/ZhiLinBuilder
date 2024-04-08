@@ -34,6 +34,9 @@ export default function ComponentType(props: any) {
       case 'color': {
         return <ColorPicker value={selectComNode?.comStyle?.[value] || "#FFFFFF"} defaultValue={defaultValue} showText style={{ width: '120px' }} onChangeComplete={onChange} />
       }
+      case 'attributeColor': {
+        return <ColorPicker value={selectComNode?.[value] || "#FFFFFF"} defaultValue={defaultValue} showText style={{ width: '120px' }} onChangeComplete={onChange} />
+      }
     }
   }
   return (

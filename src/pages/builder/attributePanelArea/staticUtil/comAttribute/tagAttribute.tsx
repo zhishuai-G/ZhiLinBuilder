@@ -9,7 +9,7 @@ const tagAttribute: ComAttribute[] = [
   {
     label: '标签颜色',
     value: 'color',
-    type: 'color'
+    type: 'attributeColor'
   },
   {
     label: '是否有边框',
