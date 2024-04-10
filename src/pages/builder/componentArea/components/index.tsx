@@ -12,6 +12,8 @@ import Alert from './alert'
 import Progress from './progress'
 import QRCode from './qrCode'
 import Tag from './tag'
+import Avatar from './avater'
+import Badge from './badge'
 
 export {
   Button,
@@ -27,5 +29,7 @@ export {
   Alert,
   Progress,
   QRCode,
-  Tag
+  Tag,
+  Avatar,
+  Badge
 }

@@ -12,6 +12,8 @@ import alertAttribute from "./comAttribute/alertAttribute"
 import progressAttribute from "./comAttribute/progressAttribute"
 import qrCodeAttribute from "./comAttribute/qrCodeAttribute"
 import tagAttribute from "./comAttribute/tagAttribute"
+import avatarAttribute from "./comAttribute/avatarAttribute"
+import badgeAttribute from "./comAttribute/badgeAttribute"
 
 interface AttributeMap {
   [key: string]: ComAttribute[]
@@ -40,5 +42,7 @@ export const attributeMap: AttributeMap = {
   Alert: alertAttribute,
   Progress: progressAttribute,
   QRCode: qrCodeAttribute,
-  Tag: tagAttribute
+  Tag: tagAttribute,
+  Avatar: avatarAttribute,
+  Badge: badgeAttribute
 }

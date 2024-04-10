@@ -1,4 +1,5 @@
 import alertStyle from "./comStyle/alertStyle"
+import avatarStyle from "./comStyle/avatarStyle"
 import buttonStyle from "./comStyle/buttonStyle"
 import cardStyle from "./comStyle/cardStyle"
 import floatButtonStyle from "./comStyle/floatButtonStyle"
@@ -32,5 +33,6 @@ export const styleMap: StyleMap = {
   Alert: alertStyle,
   Progress: progressStyle,
   QRCode: qrCodeStyle,
-  Tag: tagStyle
+  Tag: tagStyle,
+  Avatar: avatarStyle
 }

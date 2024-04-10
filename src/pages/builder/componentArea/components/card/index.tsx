@@ -3,6 +3,7 @@ import { Card as ZLCard } from 'antd';
 export default function Card(props: any) {
   
   const { children, caption, hoverable, size, comStyle = {} } = props
+  
   return (
     <div>
       <ZLCard 

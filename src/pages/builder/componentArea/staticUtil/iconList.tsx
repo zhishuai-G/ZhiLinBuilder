@@ -11,7 +11,9 @@ import {
   AlertOutlined,
   SmallDashOutlined,
   QrcodeOutlined,
-  InstagramOutlined
+  InstagramOutlined,
+  UserOutlined,
+  InfoOutlined
 } from '@ant-design/icons';
 
 interface ComponentIconMap {
@@ -36,7 +38,9 @@ const componentIconMap: ComponentIconMap = {
   Alert: AlertOutlined,
   Progress: SmallDashOutlined,
   QRCode: QrcodeOutlined,
-  Tag: InstagramOutlined
+  Tag: InstagramOutlined,
+  Avatar: UserOutlined,
+  Badge: InfoOutlined
 }
 
 const componentTextMap: ComponentTextMap = {
@@ -53,7 +57,9 @@ const componentTextMap: ComponentTextMap = {
   Alert: '警告提示',
   Progress: '进度条',
   QRCode: '二维码',
-  Tag: '标签'
+  Tag: '标签',
+  Avatar: '头像',
+  Badge: '徽标数'
 }
 
 export {
