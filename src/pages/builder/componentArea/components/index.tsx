@@ -1,19 +1,20 @@
-import Button from './button'
-import Input from './input'
-import Icon from './icon'
-import Checkbox from './checkbox'
-import Radio from './radio'
-import Switch from './switch'
-import Rate from './rate'
-import Form from './form'
-import Card from './card'
-import FloatButton from './floatButton'
-import Alert from './alert'
-import Progress from './progress'
-import QRCode from './qrCode'
-import Tag from './tag'
-import Avatar from './avater'
-import Badge from './badge'
+import Button from './Button'
+import Input from './Input'
+import Icon from './Icon'
+import Checkbox from './Checkbox'
+import Radio from './Radio'
+import Switch from './Switch'
+import Rate from './Rate'
+import Form from './Form'
+import Card from './Card'
+import FloatButton from './FloatButton'
+import Alert from './Alert'
+import Progress from './Progress'
+import QRCode from './QRCode'
+import Tag from './Tag'
+import Avatar from './Avater'
+import Badge from './Badge'
+import Carousel from './Carousel'
 
 export {
   Button,
@@ -31,5 +32,6 @@ export {
   QRCode,
   Tag,
   Avatar,
-  Badge
+  Badge,
+  Carousel
 }

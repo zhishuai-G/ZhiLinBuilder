@@ -14,6 +14,7 @@ import qrCodeAttribute from "./comAttribute/qrCodeAttribute"
 import tagAttribute from "./comAttribute/tagAttribute"
 import avatarAttribute from "./comAttribute/avatarAttribute"
 import badgeAttribute from "./comAttribute/badgeAttribute"
+import carouselAttribute from "./comAttribute/carouselAttribute"
 
 interface AttributeMap {
   [key: string]: ComAttribute[]
@@ -44,5 +45,6 @@ export const attributeMap: AttributeMap = {
   QRCode: qrCodeAttribute,
   Tag: tagAttribute,
   Avatar: avatarAttribute,
-  Badge: badgeAttribute
+  Badge: badgeAttribute,
+  Carousel: carouselAttribute
 }

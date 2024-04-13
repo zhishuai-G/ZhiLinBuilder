@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setSelectCom, setDragCom, setComList } from '../../../store/slices/comSlice'
 import { getComById } from '../../../utils/nodeUtils'
 import { componentTextMap } from '../componentArea/staticUtil/iconList'
+import { includesList, onCanvasAreaDropContainer, onComponentDropContainer } from './staticUtil'
 
 let num = 1
+
 export interface ComJson {
   name: string,
   // 组件的唯一ID
@@ -15,7 +17,7 @@ export interface ComJson {
   childList?: ComJson[]
 }
 
-function CanvasArea(props: any) {
+function CanvasArea() {
 
   const distance = useRef({
     startLeft: void 0,
@@ -70,7 +72,7 @@ function CanvasArea(props: any) {
     distance.current.endTop = e.clientY
     let style: any
     if (dragComId) { // 画布区域自由拖拽的逻辑
-      const node = getComById(dragComId, comList) // 找到当前在画布区拖拽对象
+      const node = getComById(dragComId, comList) // 找到当前在画布区的拖拽对象
       node.style = {
         ...node.style,
         left: parseInt(node.style.left) + (e.clientX - (distance.current.startLeft || 0)) + 'px',
@@ -103,56 +105,23 @@ function CanvasArea(props: any) {
 
   const onDropContainer = (com: ComJson) => {
     return (e: any) => {
-      const dragCom = getComById(dragComId, comList) // 找到当前在画布区拖拽对象
-      // 判断是不是往画布区域的form容器里面拖拽组件
-      if (['Form', 'Card', 'Badge'].includes(com.name)) {
-        // 判断组件从画布区拖到form容器的逻辑
+      const dragCom = getComById(dragComId, comList) // 找到当前在画布区的拖拽对象
+      // 判断是不是往画布区域的容器里面拖拽组件
+      if (includesList.hasOwnProperty(com.name)) {
+        // 判断在画布区内的组件拖到在画布区的容器里的逻辑
         if (dragCom && dragCom !== com) {
-          // 找到当前组件在comList中的位置
-          const index = comList.findIndex((item: any) => item.comId === dragCom?.comId);
-          if (index > -1) {
-            // 从画布区的组件集合comList中删除此组件，因为此组件要作为form容器的子元素，因此不在组件集合comList中了
-            comList.splice(index, 1)
-          }
-          // 判断form容器里面是否有子元素，没有就在form容器上绑定childList属性，用来保存拖入form容器内的组件
-          if (!com.childList) {
-            com.childList = []
-          }
-          // 组件如果拖进入form容器里面就不能自由拖动了，所以需要删除组件的style，防止在form容器内部自由拖动
-          delete dragCom.style
-          com.childList.push(dragCom);
+          onCanvasAreaDropContainer(comList, dragCom, com, e)
           dispatch(setComList(comList))
-          e.stopPropagation()
           setDragComId('')
           return;
         }
-        // 判断是否在画布区拖动form容器，如果是，直接返回
+        // 判断是否在画布区拖动容器，如果是，直接返回
         else if (dragCom) {
           return;
         }
-
-        // 判断组件从组件区域直接拖到画布区域的form容器里面的逻辑，并记录往form容器里面拖拽的组件comNode
-        let comId = `comId_${Date.now()}`
-        const comNode = {
-          name: nowCom,
-          comId,
-          caption: componentTextMap[nowCom] + num++
-        }
-
-        // 判断组件区域的组件如果是form容器，就不能拖到画布区域的form容器里面
-        if (['Form', 'Card', 'Badge'].includes(comNode.name)) {
-          e.stopPropagation()
-          return
-        }
-
-        // 判断form容器里面是否有子元素，没有就在form容器上绑定childList属性，用来保存拖入form容器内的组件
-        if (!com.childList) {
-          com.childList = []
-        }
-        // 把组件放置到form容器的childList里面作为form容器的子元素
-        com.childList.push(comNode);
+        // 判断从组件区域拖拽组件到在画布区的容器里的逻辑
+        onComponentDropContainer(com, nowCom, e)
         dispatch(setComList(comList))
-        e.stopPropagation()
       }
     }
   }
