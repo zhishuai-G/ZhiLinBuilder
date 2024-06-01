@@ -15,15 +15,12 @@ function Builder() {
     const fetchData = async () => {
       const search = window?.location?.search || ''
       const pageId = search.replace('?pageId=', '')
-      let data = await axios.get('/api/page-json/findPageById', { params: { pageId } }).then(res => {
-        if (res.data) {
-          dispatch(setComList(res.data?.pageJson || []))
-          return res.data
-        } else {
-          message.error('获取页面详情失败')
-        }
-      })
-      console.log(data);
+      const res = await axios.get('/api/page-json/findPageById', { params: { pageId } }).then(res => res.data )
+      if (res?.code === 200) {
+        dispatch(setComList(res?.data?.pageJson))
+      } else {
+        message.error('获取页面详情失败')
+      }
     }
     fetchData();
   }, [])
