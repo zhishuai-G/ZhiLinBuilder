@@ -15,6 +15,8 @@ import Tag from './Tag'
 import Avatar from './Avater'
 import Badge from './Badge'
 import Carousel from './Carousel'
+import Upload from './Upload'
+import Image from './Image'
 
 export {
   Button,
@@ -33,5 +35,7 @@ export {
   Tag,
   Avatar,
   Badge,
-  Carousel
+  Carousel,
+  Upload,
+  Image
 }

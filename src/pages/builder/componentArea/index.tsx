@@ -66,7 +66,7 @@ const ComponentArea: React.FC = () => {
       {
         key: 'dataEntryComponents',
         label: '数据录入组件',
-        children: renderComponent(['Input', 'Checkbox', 'Radio', 'Switch', 'Rate']),
+        children: renderComponent(['Input', 'Checkbox', 'Radio', 'Switch', 'Rate', 'Upload']),
       },
       {
         key: 'layouContainer',
@@ -81,7 +81,7 @@ const ComponentArea: React.FC = () => {
       {
         key: 'dataDisplaycomponent',
         label: '数据展示组件',
-        children: renderComponent(['QRCode', 'Tag', 'Avatar']),
+        children: renderComponent(['QRCode', 'Tag', 'Avatar','Image']),
       }
     ];
 

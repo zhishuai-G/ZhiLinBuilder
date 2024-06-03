@@ -15,6 +15,8 @@ import tagAttribute from "./comAttribute/tagAttribute"
 import avatarAttribute from "./comAttribute/avatarAttribute"
 import badgeAttribute from "./comAttribute/badgeAttribute"
 import carouselAttribute from "./comAttribute/carouselAttribute"
+import uploadAttribute from "./comAttribute/uploadAttribute"
+import imageAttribute from "./comAttribute/imageAttribute"
 
 interface AttributeMap {
   [key: string]: ComAttribute[]
@@ -46,5 +48,7 @@ export const attributeMap: AttributeMap = {
   Tag: tagAttribute,
   Avatar: avatarAttribute,
   Badge: badgeAttribute,
-  Carousel: carouselAttribute
+  Carousel: carouselAttribute,
+  Upload: uploadAttribute,
+  Image: imageAttribute
 }
