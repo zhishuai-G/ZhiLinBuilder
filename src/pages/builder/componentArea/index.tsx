@@ -81,7 +81,7 @@ const ComponentArea: React.FC = () => {
       {
         key: 'dataDisplaycomponent',
         label: '数据展示组件',
-        children: renderComponent(['QRCode', 'Tag', 'Avatar','Image']),
+        children: renderComponent(['QRCode', 'Tag', 'Avatar','Image', 'Table']),
       }
     ];
 

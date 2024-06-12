@@ -17,6 +17,7 @@ import badgeAttribute from "./comAttribute/badgeAttribute"
 import carouselAttribute from "./comAttribute/carouselAttribute"
 import uploadAttribute from "./comAttribute/uploadAttribute"
 import imageAttribute from "./comAttribute/imageAttribute"
+import tableAttribute from "./comAttribute/tableAttribute"
 
 interface AttributeMap {
   [key: string]: ComAttribute[]
@@ -27,7 +28,7 @@ export interface ComAttribute {
   value: string,
   type: string,
   options?: Array<any>,
-  defaultValue?: string | number,
+  defaultValue?: string | number | boolean | Array<any>,
   modalType?: string
 }
 
@@ -50,5 +51,6 @@ export const attributeMap: AttributeMap = {
   Badge: badgeAttribute,
   Carousel: carouselAttribute,
   Upload: uploadAttribute,
-  Image: imageAttribute
+  Image: imageAttribute,
+  Table: tableAttribute
 }

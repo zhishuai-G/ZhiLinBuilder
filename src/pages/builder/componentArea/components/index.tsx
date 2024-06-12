@@ -17,6 +17,7 @@ import Badge from './Badge'
 import Carousel from './Carousel'
 import Upload from './Upload'
 import Image from './Image'
+import Table from './Table'
 
 export {
   Button,
@@ -37,5 +38,6 @@ export {
   Badge,
   Carousel,
   Upload,
-  Image
+  Image,
+  Table
 }

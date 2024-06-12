@@ -10,6 +10,7 @@ import imageStyle from "./comStyle/imageStyle"
 import inputStyle from "./comStyle/inputStyle"
 import progressStyle from "./comStyle/progressStyle"
 import qrCodeStyle from "./comStyle/qrCodeStyle"
+import tableStyle from "./comStyle/tableStyle"
 import tagStyle from "./comStyle/tagStyle"
 import uploadStyle from "./comStyle/uploadStyle"
 
@@ -40,5 +41,6 @@ export const styleMap: StyleMap = {
   Avatar: avatarStyle,
   Carousel: carouselStyle,
   Upload: uploadStyle,
-  Image: imageStyle
+  Image: imageStyle,
+  Table: tableStyle
 }
