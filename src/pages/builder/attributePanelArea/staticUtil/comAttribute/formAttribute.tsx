@@ -7,6 +7,12 @@ const formAttribute: ComAttribute[] = [
     type: 'switch'
   },
   {
+    label: '选择实体',
+    value: 'entityCode',
+    type: 'entityModal',
+    modalType: 'EntitySelect'
+  },
+  {
     label: '文本对齐方式',
     value: 'labelAlign',
     type: 'select',
