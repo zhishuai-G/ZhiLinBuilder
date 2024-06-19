@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { setComList } from "../../../../../store/slices/comSlice"
 import axios from "axios"
+import cloneDeep from 'lodash/cloneDeep'
 
 export default function Form(props: any) {
   const comReducer = useSelector((state: any) => state.comReducer)
@@ -13,10 +14,11 @@ export default function Form(props: any) {
 
   const { children, disabled, labelAlign, size, colon, labelWrap, comStyle = {}, tableObj = {}, comId } = props
   const { tableCode = '', columns = [] } = tableObj
-  const formNode = getComById(comId, comList); // 找到当前选中的表单对象
+  const formNode = cloneDeep(getComById(comId, comList));  // 找到当前选中的表单对象
+  const formNodeIndex = comList.findIndex((com: any) => com?.comId === comId) // 找到当前选中的表单对象在comList中的索引
 
   const handleSubmit = async () => {
-    const childList = formNode.childList || []
+    let childList = formNode.childList || []
     if (tableCode) {
       const columnsData = childList?.map((item: any) => {
         return {
@@ -36,15 +38,14 @@ export default function Form(props: any) {
 // 监听tableCode（数据表）的变化，如果变化了，则重新生成表单
 useEffect(() => {
   if (tableCode && columns.length > 0) {
-    if (formNode?.childList) {
-      return
-    }
-    formNode.childList = []
+    const newFormNode = { ...formNode, childList: [] }  // 创建一个新的表单对象
     const inputList = columns.map((item: any) => {
       return createCom({ name: 'Input', caption: item.columnName, label: item.columnName })
     })
-    formNode.childList.push(...inputList)
-    dispatch(setComList(comList))
+    newFormNode.childList.push(...inputList) // 将输入框添加到表单对象中
+    const updatedComList = [...comList] // 创建一个新的comList
+    updatedComList[formNodeIndex] = newFormNode // 替换当前选中的表单对象
+    dispatch(setComList(updatedComList)) // 更新comList
   }
 }, [tableCode])
 
