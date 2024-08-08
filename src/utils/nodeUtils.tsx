@@ -22,7 +22,13 @@ const createCom = (props: any)=> {
   }
 }
 
+const isRender=()=>{
+  const pathName = window?.location?.pathname
+  return pathName?.includes('render')
+}
+
 export {
   getComById,
-  createCom
+  createCom,
+  isRender
 }

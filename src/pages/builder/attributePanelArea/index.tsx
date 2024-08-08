@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setComList } from '../../../store/slices/comSlice';
 import { getComById } from '../../../utils/nodeUtils';
 import { styleMap } from './staticUtil/styleMap';
+import { actionMap } from './staticUtil/actionMap';
 
 const AttributePanelArea: React.FC = () => {
 
@@ -106,17 +107,44 @@ const AttributePanelArea: React.FC = () => {
     )
   }
 
+  // 渲染动作面板
+  const renderAction=()=>{
+    const name = selectComNode?.name || '' // 拿到组件类型
+    const actionList = actionMap[name] || [] // 拿到当前组件对应的属性数组
+    return (
+      <div>
+        {
+          actionList?.map((item: any, index: number) => {
+            return (
+              <div className='attributeItem' key={index}>
+                <label title={item.label} className='attributeLabel'>{item.label}</label>
+                <div className='attributeItemValue'>
+                  <ComponentType selectComNode={selectComNode} {...item} />
+                </div>
+              </div>
+            )
+          })
+        }
+      </div>
+    )
+  }
+
   const items: TabsProps['items'] = [
     {
       key: 'Attribute',
-      label: <div style={{ fontSize: '18px', width: '100px', textAlign: 'center' }}>属性</div>,
+      label: <div style={{ fontSize: '18px', width: '80px', textAlign: 'center' }}>属性</div>,
       children: renderAttribute(),
     },
     {
       key: 'Style',
-      label: <div style={{ fontSize: '18px', width: '100px', textAlign: 'center' }}>样式</div>,
+      label: <div style={{ fontSize: '18px', width: '80px', textAlign: 'center' }}>样式</div>,
       children: renderStyle(),
     },
+    {
+      key: 'Action',
+      label: <div style={{ fontSize: '18px', width: '80px', textAlign: 'center' }}>动作</div>,
+      children: renderAction(),
+    }
   ];
 
   return (

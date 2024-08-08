@@ -19,8 +19,6 @@ export default function EntitySelect(props: any) {
   const [entityDataList, setEntityDataList] = useState([])
   const [tableObj, setTableObj] = useState({})
 
-  console.log(entityDataList);
-
   // 公共方法，初始化所有数据
   const initDataSource = async () => {
     const res = await axios.get('/api/data-base/getDataForTables').then(res => res.data)

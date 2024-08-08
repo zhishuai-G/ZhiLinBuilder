@@ -1,5 +1,5 @@
 import { Button, Form as ZLForm, message } from "antd"
-import { createCom, getComById } from "../../../../../utils/nodeUtils"
+import { createCom, getComById, isRender } from "../../../../../utils/nodeUtils"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { setComList } from "../../../../../store/slices/comSlice"
@@ -18,6 +18,9 @@ export default function Form(props: any) {
   const formNodeIndex = comList.findIndex((com: any) => com?.comId === comId) // 找到当前选中的表单对象在comList中的索引
 
   const handleSubmit = async () => {
+    if(!isRender()) {
+      return
+    }
     let childList = formNode.childList || []
     if (tableCode) {
       const columnsData = childList?.map((item: any) => {
@@ -62,7 +65,7 @@ return (
       {
         children && children.map((item: any) => {
           return (
-            <ZLForm.Item label={getComById(item.key, comList)?.label}>
+            <ZLForm.Item label={getComById(item.key, comList)?.label} key={item.key}>
               {item}
             </ZLForm.Item>
           )
