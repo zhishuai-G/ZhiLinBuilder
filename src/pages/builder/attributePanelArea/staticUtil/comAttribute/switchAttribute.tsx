@@ -34,7 +34,7 @@ const switchAttribute: ComAttribute[] = [
       }
     ],
     defaultValue: 'default'
-  },
+  }
 ]
 
 export default switchAttribute

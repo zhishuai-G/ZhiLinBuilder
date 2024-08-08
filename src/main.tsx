@@ -4,7 +4,8 @@ import App from './App.tsx'
 import './index.css'
 import { Provider } from 'react-redux'
 import store from './store'
-import 'default-passive-events'
+// import 'default-passive-events'
+import './utils/browserPatch.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
