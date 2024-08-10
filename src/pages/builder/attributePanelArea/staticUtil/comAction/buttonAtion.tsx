@@ -1,6 +1,6 @@
-import { ActionAttribute } from "../actionMap"
+import { Action } from "../actionMap"
 
-const buttonAtion: ActionAttribute[] = [
+const buttonAtion: Action[] = [
   {
     label: '点击事件',
     value: 'onClick',

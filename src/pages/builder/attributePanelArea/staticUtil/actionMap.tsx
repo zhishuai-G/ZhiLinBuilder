@@ -1,10 +1,10 @@
-import buttonAtion from "./actionAttribute/buttonAtion"
+import buttonAtion from "./comAction/buttonAtion"
 
 export interface ActionMap {
-  [key: string]: ActionAttribute[]
+  [key: string]: Action[]
 }
 
-export interface ActionAttribute {
+export interface Action {
   label: string,
   value: string,
   type: string,
