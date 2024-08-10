@@ -11,7 +11,7 @@ const getComById = (comId: any, comList: any) => {
 }
 
 let num = 0
-const createCom = (props: any)=> {
+const createCom = (props: any) => {
   const { name, caption = `${name}${++num}` } = props;
   let comId = `comId_${Date.now()}${++num}`;
   return {
@@ -22,13 +22,27 @@ const createCom = (props: any)=> {
   }
 }
 
-const isRender=()=>{
+// 判断是否是运行时
+const isRender = () => {
   const pathName = window?.location?.pathname
   return pathName?.includes('render')
+}
+
+// 封装一个公共方法来解析并执行字符串中的函数
+const executeFunctionFromString = (funcString: any, ...args: any) => {
+  try {
+    // 使用 new Function 创建一个新的函数实例  
+    const func = eval(funcString);
+    // 执行该函数  
+    func(args);
+  } catch (error) { 
+    console.error('Error executing function from string:', error);  
+  }
 }
 
 export {
   getComById,
   createCom,
-  isRender
+  isRender,
+  executeFunctionFromString
 }

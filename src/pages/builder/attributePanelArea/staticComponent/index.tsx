@@ -40,15 +40,15 @@ export default function ComponentType(props: any) {
       case 'attributeColor': {
         return <ColorPicker value={selectComNode?.[value] || "#FFFFFF"} defaultValue={defaultValue} showText style={{ width: '120px' }} onChangeComplete={onChange} />
       }
-      case 'button': {
-        return <Button style={{ width: '120px' }}>{value || ''}</Button>
+      case 'action': {
+        return <Button style={{ width: '120px' }} onClick={showModal}>{value || ''}</Button>
       }
     }
   }
   return (
     <div>
       {getComponent()}
-      <ModalComponent isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}></ModalComponent>
+      <ModalComponent isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} value={value}></ModalComponent>
     </div>
   )
 }

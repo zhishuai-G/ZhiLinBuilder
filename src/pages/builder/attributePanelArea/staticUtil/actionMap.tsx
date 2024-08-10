@@ -7,7 +7,8 @@ export interface ActionMap {
 export interface ActionAttribute {
   label: string,
   value: string,
-  type: string
+  type: string,
+  modalType: string
 }
 
 export const actionMap: ActionMap = {

@@ -4,7 +4,8 @@ const buttonAtion: ActionAttribute[] = [
   {
     label: '点击事件',
     value: 'onClick',
-    type: 'button'
+    type: 'action',
+    modalType: 'ActionModal'
   }
 ]
 

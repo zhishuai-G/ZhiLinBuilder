@@ -1,7 +1,15 @@
 import { Button as ZLButton } from 'antd';
+import { executeFunctionFromString, isRender } from '../../../../../utils/nodeUtils';
 
 function Button(props: any) {
-  const { caption, danger, disabled, ghost, shape, size, comStyle = {} } = props
+  const { caption, danger, disabled, ghost, shape, size, comStyle = {}, onClick } = props
+
+  const handleOnClick = ()=>{
+    if(!isRender()) {
+      return
+    }
+    onClick && executeFunctionFromString(onClick)
+  }
 
   return (
     <div>
@@ -12,6 +20,7 @@ function Button(props: any) {
         ghost={ghost}
         shape={shape}
         size={size}
+        onClick={handleOnClick}
       >
         {caption || '按钮'}
       </ZLButton>
