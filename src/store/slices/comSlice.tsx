@@ -12,6 +12,7 @@ const comSlice = createSlice({
       state.dragCom = action.payload
     },
     setComList(state, action) {
+      window.rootStore = JSON.parse(JSON.stringify(action.payload))
       state.comList = action.payload
     },
     setSelectCom(state, action) {

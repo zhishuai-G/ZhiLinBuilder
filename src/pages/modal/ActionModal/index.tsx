@@ -38,17 +38,17 @@ export default function ActionModal(props: any) {
   };
 
   return (
-    <Modal title="代码编辑器" centered open={isModalOpen} onOk={handleOk} onCancel={handleCancel} cancelText="取消" okText="确定" width={1050}>
+    <Modal title="代码编辑器" centered open={isModalOpen} onOk={handleOk} onCancel={handleCancel} cancelText="取消" okText="确定" width={650}>
       {
         <AceEditor
-          width="1000px" // 设置编辑器的宽度  
-          height="1000px" // 设置编辑器的高度  
+          width="600px" // 设置编辑器的宽度  
+          height="600px" // 设置编辑器的高度  
           mode="javascript" // 设置编辑器的语言模式为JavaScript  
           theme="monokai" // 设置编辑器的主题为Monokai  
           name="UNIQUE_ID_OF_DIV" // 设置编辑器的唯一标识符（通常用于样式或引用）  
           editorProps={{ $blockScrolling: true }} // 传递给编辑器实例的属性，这里禁用了滚动条滚动  
           onChange={handleOnChange} // 当编辑器内容变化时调用的函数  
-          fontSize={20} // 设置编辑器的字体大小  
+          fontSize={15} // 设置编辑器的字体大小  
           showPrintMargin={true} // 显示打印边距  
           showGutter={true} // 显示行号区域  
           highlightActiveLine={true} // 高亮显示当前行  
