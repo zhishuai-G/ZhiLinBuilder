@@ -42,8 +42,6 @@ function DesignTop() {
         setVisible(true)
       }
     }
-
-    console.log(11);
     
     window.addEventListener('keydown', handleKeyDown)
 
