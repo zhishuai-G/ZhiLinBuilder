@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react';
 import { Tabs, TabsProps } from 'antd';
+import { RightOutlined } from '@ant-design/icons'
 import './style'
 import { attributeMap } from './staticUtil/attributeMap';
 import ComponentType from './staticComponent';
@@ -16,6 +18,26 @@ const AttributePanelArea: React.FC = () => {
   const comList = JSON.parse(JSON.stringify(comReducer.comList))  // 拖拽到画布区的组件的集合
   const selectCom = comReducer.selectCom // 在画布区点击选中的组件的comId
   const selectComNode = getComById(selectCom, comList) // 在画布区点击选中的组件的对象
+  const [visible, setVisible] = useState(true) // 是否显示属性面板区域
+
+  const hideAttributePanelArea = () => {
+    setVisible(!visible)
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'w' || e.key === 'W') {
+        setVisible(true)
+      }
+    }
+    
+    window.addEventListener('keydown', handleKeyDown)
+
+    // 移除事件监听
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
 
   // 渲染属性面板
   const renderAttribute = () => {
@@ -148,8 +170,11 @@ const AttributePanelArea: React.FC = () => {
   ];
 
   return (
-    <div className='attributePanelArea'>
+    <div style={visible ? {} : { display: 'none' }} className='attributePanelArea'>
       <Tabs defaultActiveKey="1" items={items} />
+      <div onClick={hideAttributePanelArea} className='icon'>
+        <RightOutlined />
+      </div>
     </div>
   )
 };
