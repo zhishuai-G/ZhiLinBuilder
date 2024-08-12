@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Tabs, Collapse, Tree, Dropdown } from 'antd';
 import type { TabsProps, CollapseProps } from 'antd';
 import { LeftOutlined } from '@ant-design/icons'
@@ -8,6 +8,7 @@ import './style'
 import { useDispatch, useSelector } from 'react-redux';
 import { setDragCom } from '../../../store/slices/comSlice';
 import { EditJson } from '../../modal';
+import useVisibility from '../../../utils/useVisibility';
 
 const ComponentArea: React.FC = () => {
 
@@ -17,7 +18,7 @@ const ComponentArea: React.FC = () => {
 
   const [showJson, setShowJson] = useState(false) // 控制是否显示协议的弹窗
   const [jsonComId, setJsonComId] = useState('') // 保存要查看协议的组件ID
-  const [visible, setVisible] = useState(true) // 是否显示组件区域
+  const { visible, toggleVisibility } = useVisibility(true, 'c', '组件区域'); // 控制组件区域的显示与隐藏
 
   // 下拉菜单展示的内容
   const dropItems = [
@@ -102,25 +103,6 @@ const ComponentArea: React.FC = () => {
     }
   }
 
-  const hideComponentArea = () => {
-    setVisible(false)
-  }
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'w' || e.key === 'W') {
-        setVisible(true)
-      }
-    }
-    
-    window.addEventListener('keydown', handleKeyDown)
-
-    // 移除事件监听
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [])
-
   // 渲染数据部分
   const renderTreeList = () => {
 
@@ -180,7 +162,7 @@ const ComponentArea: React.FC = () => {
     <div style={visible ? {} : { display: 'none' }} className='componentArea'>
       <Tabs defaultActiveKey="1" items={items} />
       <EditJson jsonComId={jsonComId} showJson={showJson} setShowJson={setShowJson}></EditJson>
-      <div onClick={hideComponentArea} className='icon'>
+      <div onClick={toggleVisibility} className='icon'>
         <LeftOutlined />
       </div>
     </div>
