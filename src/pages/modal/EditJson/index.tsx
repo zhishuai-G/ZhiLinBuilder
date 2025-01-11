@@ -1,12 +1,13 @@
 import { Modal, Typography } from "antd";
 import { getComById } from "../../../utils/nodeUtils";
 import { useSelector } from "react-redux";
+import { RootState, JsonModalProps } from '../../../types/common';
 
 
-export default function EditJson(props: any) {
+export default function EditJson(props: JsonModalProps) {
   const { showJson, setShowJson, jsonComId } = props
 
-  const comReducer = useSelector((state: any) => state.comReducer)
+  const comReducer = useSelector((state: RootState) => state.comReducer)
   const comList = JSON.parse(JSON.stringify(comReducer.comList))  // 拖拽到画布区的组件的集合
   const selectComNode = getComById(jsonComId, comList) // 在画布区点击选中的组件的对象
 

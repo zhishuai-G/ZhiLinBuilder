@@ -6,9 +6,10 @@ import { Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComById } from '../../../utils/nodeUtils';
 import { setComList } from '../../../store/slices/comSlice';
+import { RootState, ActionModalProps } from '../../../types/common';
 
-export default function ActionModal(props: any) {
-  const comReducer = useSelector((state: any) => state.comReducer)
+export default function ActionModal(props: ActionModalProps) {
+  const comReducer = useSelector((state: RootState) => state.comReducer)
   const dispatch = useDispatch()
 
   const comList = JSON.parse(JSON.stringify(comReducer.comList))  // 拖拽到画布区的组件的集合

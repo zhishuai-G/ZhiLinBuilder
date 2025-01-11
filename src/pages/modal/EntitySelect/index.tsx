@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setComList } from "../../../store/slices/comSlice";
 import { useState } from "react";
+import { RootState, ModalProps } from '@/types/common';
 
-
-export default function EntitySelect(props: any) {
-  const comReducer = useSelector((state: any) => state.comReducer)
+export default function EntitySelect(props: ModalProps) {
+  const comReducer = useSelector((state: RootState) => state.comReducer)
   const dispatch = useDispatch()
 
   const comList = JSON.parse(JSON.stringify(comReducer.comList))  // 拖拽到画布区的组件的集合
@@ -30,7 +30,7 @@ export default function EntitySelect(props: any) {
 
   const getOptions = () => {
     let options = []
-    options = entityDataList.map((item: any) => {
+    options = entityDataList.map((item: { tableName: string; tableCode: string }) => {
       return {
         label: item.tableName,
         value: item.tableCode
@@ -59,8 +59,8 @@ export default function EntitySelect(props: any) {
     setIsModalOpen(false)
   };
 
-  const changeEntity = (value: any) => {
-    entityDataList.some((item: any) => {
+  const changeEntity = (value: string) => {
+    entityDataList.some((item: { tableName: string; tableCode: string }) => {
       if (item?.tableCode === value) {
         setTableObj(item)
       }
