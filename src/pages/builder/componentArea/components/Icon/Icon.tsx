@@ -1,13 +1,21 @@
 import { useState, useEffect, ComponentType } from 'react';
+import type { AntdIconProps } from '@ant-design/icons/lib/components/AntdIcon';
 
-export default function Icon(props: any) {
-  let { rotate, spin, type = "StepBackwardOutlined", comStyle = {} } = props;
-  const [IconComponent, setIconComponent] = useState<ComponentType<any> | null>(null);
+interface IconProps {
+  rotate?: number;
+  spin?: boolean;
+  type?: string;
+  comStyle?: React.CSSProperties;
+}
+
+export default function Icon(props: IconProps) {
+  const { rotate, spin, type = "StepBackwardOutlined", comStyle = {} } = props;
+  const [IconComponent, setIconComponent] = useState<ComponentType<AntdIconProps> | null>(null);
 
   useEffect(() => {
     const getIconComponent = async () => {
-      const icons: { [key: string]: ComponentType<any> } = await import("@ant-design/icons");
-      const component = icons[type];
+      const icons = await import("@ant-design/icons");
+      const component = icons[type as keyof typeof icons] as ComponentType<AntdIconProps>;
       setIconComponent(component);
     };
 
