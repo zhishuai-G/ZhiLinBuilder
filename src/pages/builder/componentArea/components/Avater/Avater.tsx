@@ -1,6 +1,5 @@
-import { ComponentType, useEffect, useState } from 'react';
 import { Avatar as ZLAvatar } from 'antd'
-import type { AntdIconProps } from '@ant-design/icons/lib/components/AntdIcon';
+import { useAntIcon } from '../../hooks/useAntIcon';
 
 interface IconProps {
   rotate?: number;
@@ -12,21 +11,9 @@ interface IconProps {
   size?: number
 }
 
-
 export default function Avatar(props: IconProps) {
-  const { src, shape, size, type = "StepBackwardOutlined", comStyle } = props
-
-  const [IconComponent, setIconComponent] = useState<ComponentType<AntdIconProps> | null>(null);
-
-  useEffect(() => {
-    const getIconComponent = async () => {
-      const icons = await import("@ant-design/icons");
-      const component = icons[type as keyof typeof icons] as ComponentType<AntdIconProps>;
-      setIconComponent(component);
-    };
-
-    getIconComponent();
-  }, [type]);
+  const { src, shape, size, type = "StepBackwardOutlined", comStyle } = props;
+  const IconComponent = useAntIcon(type);
 
   return (
     <div>
@@ -39,5 +26,5 @@ export default function Avatar(props: IconProps) {
       >
       </ZLAvatar>
     </div>
-  )
+  );
 }

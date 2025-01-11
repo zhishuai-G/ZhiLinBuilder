@@ -1,5 +1,4 @@
-import { useState, useEffect, ComponentType } from 'react';
-import type { AntdIconProps } from '@ant-design/icons/lib/components/AntdIcon';
+import { useAntIcon } from '../../hooks/useAntIcon';
 
 interface IconProps {
   rotate?: number;
@@ -10,17 +9,7 @@ interface IconProps {
 
 export default function Icon(props: IconProps) {
   const { rotate, spin, type = "StepBackwardOutlined", comStyle = {} } = props;
-  const [IconComponent, setIconComponent] = useState<ComponentType<AntdIconProps> | null>(null);
-
-  useEffect(() => {
-    const getIconComponent = async () => {
-      const icons = await import("@ant-design/icons");
-      const component = icons[type as keyof typeof icons] as ComponentType<AntdIconProps>;
-      setIconComponent(component);
-    };
-
-    getIconComponent();
-  }, [type]);
+  const IconComponent = useAntIcon(type);
 
   return (
     <div>
