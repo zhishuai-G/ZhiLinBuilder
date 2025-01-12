@@ -1,8 +1,15 @@
+import React from 'react';
 import { Card as ZLCard } from 'antd';
+import { BaseCaptionComponentProps } from '../../../../../types/common';
 
-export default function Card(props: any) {
-  
-  const { children, caption, hoverable, size, comStyle = {} } = props
+interface CardProps extends BaseCaptionComponentProps {
+  children?: React.ReactNode[];
+  hoverable?: boolean;
+  size?: 'default' | 'small';
+}
+
+export default function Card(props: CardProps) {
+  const { children, caption, hoverable, size, comStyle = {} } = props;
   
   return (
     <div>
@@ -12,12 +19,10 @@ export default function Card(props: any) {
         hoverable={hoverable}
         size={size}
       >
-        {
-          children && children.map((item: any) => {
-            return item
-          })
-        }
+        {children?.map((item, index) => (
+          <React.Fragment key={index}>{item}</React.Fragment>
+        ))}
       </ZLCard>
     </div>
-  )
+  );
 }

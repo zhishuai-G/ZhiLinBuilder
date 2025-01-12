@@ -1,7 +1,13 @@
 import { Image as ZLImage } from 'antd';
+import { BaseComponentProps } from '../../../../../types/common';
 
-export default function Image(props: any) {
-  const { alt, src, comStyle } = props
+interface ImageProps extends BaseComponentProps {
+  alt?: string;
+  src?: string;
+}
+
+export default function Image(props: ImageProps) {
+  const { alt, src, comStyle } = props;
   return (
     <div>
       <ZLImage
@@ -11,5 +17,5 @@ export default function Image(props: any) {
         src={src || "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"}
       />
     </div>
-  )
+  );
 }

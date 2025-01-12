@@ -1,17 +1,27 @@
-import {  QRCode as ZLQRCode } from 'antd';
+import { QRCode as ZLQRCode } from 'antd';
+import { BaseComponentProps } from '../../../../../types/common';
 
-export default function QRCode(props: any) {
-  const { value, size, color, bgColor, bordered, comStyle} = props
+interface QRCodeProps extends BaseComponentProps {
+  value?: string;
+  icon?: string;
+  size?: number;
+  bordered?: boolean;
+  errorLevel?: 'L' | 'M' | 'Q' | 'H';
+}
+
+export default function QRCode(props: QRCodeProps) {
+  const { value, icon, size, bordered, errorLevel, comStyle } = props;
+
   return (
     <div>
       <ZLQRCode
-        value={value || '-'}
+        style={comStyle}
+        value={value || 'https://ant.design/'}
+        icon={icon}
         size={size}
-        color={color}
-        bgColor={bgColor}
         bordered={bordered}
-        style={{...comStyle}}
+        errorLevel={errorLevel}
       />
     </div>
-  )
+  );
 }

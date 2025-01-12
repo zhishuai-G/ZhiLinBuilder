@@ -1,8 +1,18 @@
 import { Button as ZLButton } from 'antd';
+import { BaseCaptionComponentProps } from '../../../../../types/common';
 import { executeFunctionFromString, isRender } from '../../../../../utils/nodeUtils';
 import { useState } from 'react';
 
-function Button(props: any) {
+interface ButtonProps extends BaseCaptionComponentProps {
+  danger?: boolean;
+  disabled?: boolean;
+  ghost?: boolean;
+  shape?: 'default' | 'circle' | 'round';
+  size?: 'large' | 'middle' | 'small';
+  onClick?: string;
+}
+
+function Button(props: ButtonProps) {
   const { caption, danger, disabled, ghost, shape, size, comStyle = {}, onClick, comId } = props
 
   const [buttonCaption, setCaption] = useState(caption)
@@ -15,7 +25,7 @@ function Button(props: any) {
   }
 
   if (isRender()) {
-    let buttonNode = window.getNodeById(comId)
+    const buttonNode = window.getNodeById(comId)
     if (buttonNode) {
       buttonNode.setCaption = setCaption
     }

@@ -1,18 +1,29 @@
 import { Progress as ZLProgress } from 'antd';
+import { BaseComponentProps } from '../../../../../types/common';
 
-export default function Progress(props: any) {
-  const { percent, showInfo, strokeColor, status, size, comStyle, type } = props
+interface ProgressProps extends BaseComponentProps {
+  percent?: number;
+  showInfo?: boolean;
+  status?: 'success' | 'exception' | 'normal' | 'active';
+  strokeLinecap?: 'round' | 'square' | 'butt';
+  type?: 'line' | 'circle' | 'dashboard';
+  size?: 'default' | 'small';
+}
+
+export default function Progress(props: ProgressProps) {
+  const { percent, showInfo, status, strokeLinecap, type, size, comStyle } = props;
+
   return (
     <div>
       <ZLProgress
-        style={{ width: '100px', ...comStyle }}
-        percent={percent || 30}
+        style={comStyle}
+        percent={percent || 0}
         showInfo={showInfo}
-        strokeColor={strokeColor}
         status={status}
-        size={size}
+        strokeLinecap={strokeLinecap}
         type={type}
+        size={size}
       />
     </div>
-  )
+  );
 }

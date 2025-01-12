@@ -1,17 +1,27 @@
 import { Switch as ZLSwitch } from 'antd';
+import { BaseComponentProps } from '../../../../../types/common';
 
-export default function Switch(props: any) {
-  const { checkedChildren, unCheckedChildren, disabled, size } = props
+interface SwitchProps extends BaseComponentProps {
+  checked?: boolean;
+  defaultChecked?: boolean;
+  disabled?: boolean;
+  loading?: boolean;
+  size?: 'default' | 'small';
+}
+
+export default function Switch(props: SwitchProps) {
+  const { checked, defaultChecked, disabled, loading, size, comStyle } = props;
 
   return (
     <div>
       <ZLSwitch
-        checkedChildren={checkedChildren}
-        unCheckedChildren={unCheckedChildren}
+        style={comStyle}
+        checked={checked}
+        defaultChecked={defaultChecked}
         disabled={disabled}
+        loading={loading}
         size={size}
-      >
-      </ZLSwitch>
+      />
     </div>
-  )
+  );
 }

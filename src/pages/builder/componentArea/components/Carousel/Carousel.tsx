@@ -1,7 +1,16 @@
 import { Carousel as ZLCarousel } from 'antd';
+import { BaseComponentProps } from '../../../../../types/common';
 
-export default function Carousel(props: any) {
-  const { children, autoplay, autoplaySpeed, dotPosition, fade, comStyle } = props
+interface CarouselProps extends BaseComponentProps {
+  children?: React.ReactNode[];
+  autoplay?: boolean;
+  autoplaySpeed?: number;
+  dotPosition?: 'top' | 'bottom' | 'left' | 'right';
+  fade?: boolean;
+}
+
+export default function Carousel(props: CarouselProps) {
+  const { children, autoplay, autoplaySpeed, dotPosition, fade, comStyle } = props;
 
   return (
     <div>
@@ -12,16 +21,10 @@ export default function Carousel(props: any) {
         dotPosition={dotPosition}
         fade={fade}
       >
-        {
-          children && children.map((item: any, index: number) => {
-            return (
-              <div key={index}>
-                {item}
-              </div>
-            )
-          })
-        }
+        {children?.map((item, index) => (
+          <div key={index}>{item}</div>
+        ))}
       </ZLCarousel>
     </div>
-  )
+  );
 }

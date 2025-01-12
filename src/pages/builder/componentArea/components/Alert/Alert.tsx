@@ -1,7 +1,15 @@
 import { Alert as ZLAlert } from 'antd';
+import { BaseComponentProps } from '../../../../../types/common';
 
-export default function Alert(props: any) {
-  const { type, message, showIcon, description, comStyle } = props
+interface AlertProps extends BaseComponentProps {
+  type?: 'success' | 'info' | 'warning' | 'error';
+  message?: string;
+  showIcon?: boolean;
+  description?: string;
+}
+
+export default function Alert(props: AlertProps) {
+  const { type, message, showIcon, description, comStyle } = props;
   return (
     <div>
       <ZLAlert
@@ -12,5 +20,5 @@ export default function Alert(props: any) {
         message={message || 'Success Text'}
       />
     </div>
-  )
+  );
 }

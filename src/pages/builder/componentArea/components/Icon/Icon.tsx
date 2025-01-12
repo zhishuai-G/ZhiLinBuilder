@@ -1,13 +1,7 @@
+import { BaseIconComponentProps } from '../../../../../types/common';
 import { useAntIcon } from '../../hooks/useAntIcon';
 
-interface IconProps {
-  rotate?: number;
-  spin?: boolean;
-  type?: string;
-  comStyle?: React.CSSProperties;
-}
-
-export default function Icon(props: IconProps) {
+export default function Icon(props: BaseIconComponentProps) {
   const { rotate, spin, type = "StepBackwardOutlined", comStyle = {} } = props;
   const IconComponent = useAntIcon(type);
 

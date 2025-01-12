@@ -1,16 +1,28 @@
 import { Tag as ZLTag } from 'antd';
+import { BaseComponentProps } from '../../../../../types/common';
 
-export default function Tag(props: any) {
-  const { color, bordered, caption, comStyle = {} } = props
+interface TagProps extends BaseComponentProps {
+  color?: string;
+  closable?: boolean;
+  bordered?: boolean;
+  icon?: React.ReactNode;
+  text?: string;
+}
+
+export default function Tag(props: TagProps) {
+  const { color, closable, bordered, icon, text, comStyle } = props;
+
   return (
     <div>
       <ZLTag
+        style={comStyle}
         color={color}
+        closable={closable}
         bordered={bordered}
-        style={{ ...comStyle }}
+        icon={icon}
       >
-        {caption || '标签'}
+        {text || 'Tag'}
       </ZLTag>
     </div>
-  )
+  );
 }

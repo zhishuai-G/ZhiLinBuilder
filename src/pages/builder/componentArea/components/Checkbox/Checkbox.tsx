@@ -1,15 +1,18 @@
 import { Checkbox as ZLCheckbox } from 'antd';
+import { BaseCaptionComponentProps } from '../../../../../types/common';
 
-export default function Checkbox(props: any) {
-  const { caption, disabled } = props
+interface CheckboxProps extends BaseCaptionComponentProps {
+  disabled?: boolean;
+}
+
+export default function Checkbox(props: CheckboxProps) {
+  const { caption, disabled } = props;
 
   return (
     <div>
-      <ZLCheckbox
-        disabled={disabled}
-      >
+      <ZLCheckbox disabled={disabled}>
         {caption || "多选"}
       </ZLCheckbox>
     </div>
-  )
+  );
 }

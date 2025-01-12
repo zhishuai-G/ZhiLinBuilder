@@ -1,14 +1,13 @@
 import { FloatButton as ZLFloatButton } from 'antd';
 import { useAntIcon } from '../../hooks/useAntIcon';
+import { BaseIconComponentProps } from '../../../../../types/common';
 
-interface IconProps {
-  rotate?: number;
-  spin?: boolean;
-  type?: string;
-  comStyle?: React.CSSProperties;
+interface FloatButtonProps extends BaseIconComponentProps {
+  caption?: string;
+  shape?: 'circle' | 'square';
 }
 
-export default function FloatButton(props: IconProps & { caption?: string; shape?: 'circle' | 'square' }) {
+export default function FloatButton(props: FloatButtonProps) {
   const { caption, shape, type = "StepBackwardOutlined", comStyle } = props;
   const IconComponent = useAntIcon(type);
 
